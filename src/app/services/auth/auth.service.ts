@@ -16,10 +16,10 @@ export class AuthService {
   private initializeUsers() {
     if (!localStorage.getItem(this.USERS_KEY)) {
       const users = [
-        {login: 'ivan', password: 'ivan123', name: 'Ivan'},
-        {login: 'maria', password: 'maria123', name: 'Maria'},
-        {login: 'vlad', password: 'vlad123', name: 'Vlad'},
-        {login: 'alla', password: 'alla123', name: 'Alla'},
+        {login: 'ivan', password: 'ivan123'},
+        {login: 'maria', password: 'maria123'},
+        {login: 'vlad', password: 'vlad123'},
+        {login: 'alla', password: 'alla123'},
       ];
       localStorage.setItem(this.USERS_KEY, JSON.stringify(users));
     }
