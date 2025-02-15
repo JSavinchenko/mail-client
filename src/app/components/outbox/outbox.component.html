@@ -1,0 +1,68 @@
+<app-header></app-header>
+<div class="flex flex-row flex-wrap gap-4 h-full pr-4 w-full">
+  <app-navbar></app-navbar>
+  <div class="flex-1 min-w-0 overflow-hidden pl-4">
+    <div class="card overflow-auto border-round-sm">
+      <p-table
+        [value]="messages"
+        selectionMode="single"
+        [(selection)]="selectedMessage"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Получатель</th>
+            <th>Дата</th>
+            <th>Сообщение</th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-message>
+          <tr (click)="selectMessage(message)">
+            <td>{{ message.recipient }}</td>
+            <td>{{ message.date | date: 'short' }}</td>
+            <td>
+              {{
+                message.text.length > 20
+                  ? (message.text | slice: 0 : 20) + '...'
+                  : message.text
+              }}
+            </td>
+            <td class="text-right">
+              <p-button
+                (click)="deleteMessage(message.id); $event.stopPropagation()"
+                styleClass="p-button-text p-button-danger"
+                >Удалить</p-button
+              >
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+
+  <div
+    *ngIf="selectedMessage"
+    class="border-1 max-w-18rem border-round-sm px-3 py-2 relative"
+  >
+    <div class="flex justify-between items-center gap-2">
+      <h3 class="text-lg font-semibold">Просмотр сообщения</h3>
+      <p-button
+        (click)="closeMessage()"
+        styleClass="p-button-text text-white"
+        class="h-6 flex items-center"
+      >
+        ✖
+      </p-button>
+    </div>
+    <p><strong>Кому:</strong> {{ selectedMessage.recipient }}</p>
+    <p><strong>Дата:</strong> {{ selectedMessage.date | date: 'short' }}</p>
+    <div
+      class="h-10rem overflow-y-auto"
+      style="white-space: pre-wrap; word-wrap: break-word"
+    >
+      <p class="whitespace-pre-wrap">
+        <strong>Текст:</strong> {{ selectedMessage.text }}
+      </p>
+    </div>
+  </div>
+</div>

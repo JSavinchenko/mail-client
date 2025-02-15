@@ -1,0 +1,27 @@
+<div class="flex flex-column gap-3 justify-content-center ml-4 min-w-max">
+  <p-button
+    label="Написать"
+    class="p-button w-full"
+    [ngStyle]="{'white-space': 'nowrap'}"
+    [routerLink]="['/create']"
+    [disabled]="currentRoute === '/create'"
+    (click)="openMessageForm()"
+  />
+  <div class="flex flex-column gap-3 mt-4 w-full">
+    <div class="flex flex-column gap-3 mt-4 w-full">
+      <p-button
+        label="Входящие"
+        class="p-button w-full"
+        [routerLink]="['/inbox']"
+        [disabled]="currentRoute === '/inbox'"
+      >
+      </p-button>
+      <p-button
+        label="Исходящие"
+        class="p-button w-full"
+        [routerLink]="['/outbox']"
+        [disabled]="currentRoute === '/outbox'"
+      />
+    </div>
+  </div>
+</div>

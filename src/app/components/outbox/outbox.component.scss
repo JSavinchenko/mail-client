@@ -1,0 +1,9 @@
+@media (max-width: 750px) {
+  .flex-row {
+    flex-direction: column;
+  }
+
+  app-navbar {
+    width: 100%;
+  }
+}

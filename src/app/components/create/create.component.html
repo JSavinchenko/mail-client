@@ -1,0 +1,22 @@
+<app-header></app-header>
+<div
+  class="flex flex-column justify-content-center align-items-center border-1 border-round-sm mx-auto px-4 py-3 gap2"
+  style="max-width: 35%; width: 100%"
+>
+  <h3>Написать сообщение</h3>
+  <div
+    class="flex flex-row gap-2 align-items-center w-full justify-content-start"
+  >
+    <label for="receiver">Кому: </label>
+    <select [(ngModel)]="newMessage.receiver" class="mb-2">
+      <option *ngFor="let user of users" [value]="user.login">
+        {{ user.name }}
+      </option>
+    </select>
+  </div>
+  <textarea [(ngModel)]="newMessage.text" class="w-full p-2 border"></textarea>
+  <div class="flex justify-content-between w-full gap-2 mt-2">
+    <p-button (click)="sendMessage()" label="Отправить"></p-button>
+    <p-button (click)="closeForm()" label="Отмена" severity="danger"></p-button>
+  </div>
+</div>
